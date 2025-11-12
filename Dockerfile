@@ -24,7 +24,7 @@ RUN apt-get update -qq && \
 # the NODE_VERSION from the example at the time was set to 22.13.1 - as of 11/11/2025, node 24.11.1 seems to be
 # latest lts version (unless I'm reading the chart wrong - https://nodejs.org/en/about/previous-releases)
 # Install JavaScript dependencies
-ARG NODE_VERSION=24.11.1
+ARG NODE_VERSION=22.13.1
 ENV PATH=/usr/local/node/bin:$PATH
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
     /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
