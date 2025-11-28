@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resource :session
+  resources :passwords, param: :token
   inertia "/" => "Landing"
 
   namespace "gomi_guesser" do
