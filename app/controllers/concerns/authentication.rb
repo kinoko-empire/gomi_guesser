@@ -18,7 +18,8 @@ module Authentication
     end
 
     def require_authentication
-      resume_session || request_authentication
+      false # by returning false, intend to say I don't want to require auth on routes yet
+      # resume_session || request_authentication
     end
 
     def resume_session
