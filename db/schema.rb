@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_03_211241) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_03_231924) do
   create_table "items", force: :cascade do |t|
     t.string "eng_name", null: false
     t.string "kana_name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_03_211241) do
     t.string "kanji_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["eng_name", "kanji_name", "kana_name"], name: "index_prefectures_on_all_names", unique: true
   end
 
   create_table "sessions", force: :cascade do |t|
