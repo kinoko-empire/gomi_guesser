@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_03_204502) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_03_211241) do
   create_table "items", force: :cascade do |t|
     t.string "eng_name", null: false
     t.string "kana_name"
@@ -26,6 +26,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_03_204502) do
     t.string "municipality_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "prefecture_id", null: false
+    t.index ["prefecture_id"], name: "index_municipalities_on_prefecture_id"
     t.check_constraint "municipality_type IN ('ward', 'city', 'town', 'village')", name: "municipality_type_check"
   end
 
@@ -57,5 +59,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_03_204502) do
     t.check_constraint "role IN ('standard', 'admin')", name: "role_check"
   end
 
+  add_foreign_key "municipalities", "prefectures"
   add_foreign_key "sessions", "users"
 end
