@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_03_055928) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_03_065814) do
   create_table "items", force: :cascade do |t|
     t.string "eng_name", null: false
     t.string "kana_name"
     t.string "kanji_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "municipalities", force: :cascade do |t|
+    t.string "eng_name", null: false
+    t.string "kana_name", null: false
+    t.string "kanji_name", null: false
+    t.string "municipality_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.check_constraint "municipality_type IN ('ward', 'city', 'town', 'village')", name: "municipality_type_check"
   end
 
   create_table "sessions", force: :cascade do |t|
