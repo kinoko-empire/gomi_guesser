@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_03_065814) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_03_204502) do
   create_table "items", force: :cascade do |t|
     t.string "eng_name", null: false
     t.string "kana_name"
@@ -27,6 +27,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_03_065814) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.check_constraint "municipality_type IN ('ward', 'city', 'town', 'village')", name: "municipality_type_check"
+  end
+
+  create_table "prefectures", force: :cascade do |t|
+    t.string "eng_name", null: false
+    t.string "kana_name", null: false
+    t.string "kanji_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sessions", force: :cascade do |t|
