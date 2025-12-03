@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :items
   resource :session, only: [ :new ]
   resources :passwords, param: :token, only: [ :new ]
   inertia "/" => "Landing"
