@@ -29,7 +29,6 @@ def create_seed_data
   prefectures_csv.each do |row|
     # keeping prefecture_id in the csv file in case I find later that it makes more sense to hard code the ids instead of letting rails generate them
     p = Prefecture.find_or_create_by(eng_name: row["eng_name"]) do |c|
-      puts "running inside prefecture block"
       c.kanji_name = row["kanji_name"]
       c.kana_name = row["kana_name"]
     end
@@ -50,7 +49,6 @@ def create_seed_data
 
   municipalities_csv.each do |row|
     Municipality.find_or_create_by(eng_name: row["eng_name"], prefecture_id: prefecture_id_map[row["prefecture_name"]]) do |c|
-      puts "running inside municipality block"
       c.kanji_name = row["kanji_name"]
       c.kana_name = row["kana_name"]
       c.municipality_type = row["municipality_type"]
