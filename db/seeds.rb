@@ -10,7 +10,9 @@
 require "csv"
 
 # jp_prefectures.csv contains prefecture names for all prefectures in japan as of 2025 (that I am aware of) - total 47
+# based on https://github.com/nobuf/list-of-cities-in-japan/blob/master/build/prefectures.csv
 # jp_municipalities.csv contains names of all wards, cities, villages in Tokyo metropolitan that I am aware of - total 23
+# based on https://github.com/nobuf/list-of-cities-in-japan/blob/master/build/cities_in_japan_2024.csv
 def create_seed_data
   prefecture_id_map = {}
 
