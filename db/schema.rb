@@ -10,7 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_28_043334) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_03_231924) do
+  create_table "items", force: :cascade do |t|
+    t.string "eng_name", null: false
+    t.string "kana_name"
+    t.string "kanji_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "municipalities", force: :cascade do |t|
+    t.string "eng_name", null: false
+    t.string "kana_name", null: false
+    t.string "kanji_name", null: false
+    t.string "municipality_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "prefecture_id", null: false
+    t.index ["prefecture_id"], name: "index_municipalities_on_prefecture_id"
+    t.check_constraint "municipality_type IN ('ward', 'city', 'town', 'village')", name: "municipality_type_check"
+  end
+
+  create_table "prefectures", force: :cascade do |t|
+    t.string "eng_name", null: false
+    t.string "kana_name", null: false
+    t.string "kanji_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["eng_name", "kanji_name", "kana_name"], name: "index_prefectures_on_all_names", unique: true
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -31,5 +60,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_28_043334) do
     t.check_constraint "role IN ('standard', 'admin')", name: "role_check"
   end
 
+  add_foreign_key "municipalities", "prefectures"
   add_foreign_key "sessions", "users"
 end
