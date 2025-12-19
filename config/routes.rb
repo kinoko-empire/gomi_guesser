@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   resources :passwords, param: :token, only: [ :new ]
   inertia "/" => "Landing"
 
+  namespace "admin" do
+    resources :municipalities, :prefectures, :items
+
+    get "/", to: redirect("/admin/dashboard")
+    get "dashboard", to: "dashboard#index"
+  end
+
   namespace "gomi_guesser" do
     inertia "/" => "Landing"
     inertia "/test" => "Landing"
