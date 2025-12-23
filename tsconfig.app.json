@@ -22,6 +22,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+
+    // added the "paths" option myself when trying to get path aliases working for typescript
+    // got the "@/*": ["./app/frontend/*"] line from https://stackoverflow.com/a/79775883
+    // from my understanding, this tells typescript how to resolve path aliases
+    // this pathing is also configured in vite.config.ts - in this case, this is telling
+    // vite how to resolve modules too for bundling/building
+    "paths": { "@/*": ["./app/frontend/*"] }
   },
   "include": ["app/frontend"]
 }
