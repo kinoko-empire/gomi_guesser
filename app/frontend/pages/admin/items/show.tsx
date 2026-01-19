@@ -3,7 +3,7 @@ import { Head } from "@inertiajs/react";
 export default function ItemShow() {
   return (
     <>
-      <Head title="Inertia + Vite Ruby + React Example" />
+      <Head title="Gomi guessing" />
       <div>
         <h1>Item show page</h1>
       </div>
