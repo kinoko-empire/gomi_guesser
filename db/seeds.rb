@@ -53,6 +53,7 @@ def create_seed_data
       c.kanji_name = row["kanji_name"]
       c.kana_name = row["kana_name"]
       c.municipality_type = row["municipality_type"]
+      c.alphanumeric_eng_name = row["alphanumeric_eng_name"]
     end
   end
 

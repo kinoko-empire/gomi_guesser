@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_26_214126) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_26_221041) do
   create_table "item_categories", force: :cascade do |t|
     t.string "name", null: false
     t.string "kanji_name", null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_26_214126) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "prefecture_id", null: false
+    t.string "alphanumeric_eng_name", default: "municipality_alphanumeric_eng_name", null: false
     t.index ["prefecture_id"], name: "index_municipalities_on_prefecture_id"
     t.check_constraint "municipality_type IN ('ward', 'city', 'town', 'village')", name: "municipality_type_check"
   end
