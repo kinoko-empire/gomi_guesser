@@ -23,7 +23,7 @@ def create_seed_data
   if !Prefecture.first
     puts "seeding #{prefectures_csv.length} prefectures"
   else
-    puts "prefectures already exist, skipping "
+    puts "prefectures already exist, skipping"
   end
 
   prefectures_csv.each do |row|
@@ -31,6 +31,7 @@ def create_seed_data
     p = Prefecture.find_or_create_by(eng_name: row["eng_name"]) do |c|
       c.kanji_name = row["kanji_name"]
       c.kana_name = row["kana_name"]
+      c.alphanumeric_eng_name = row["alphanumeric_eng_name"]
     end
 
     prefecture_id_map[p.eng_name] = p.id
