@@ -54,6 +54,7 @@ def create_seed_data
       c.kana_name = row["kana_name"]
       c.municipality_type = row["municipality_type"]
       c.alphanumeric_eng_name = row["alphanumeric_eng_name"]
+      c.info_url = row["info_url"]
     end
   end
 

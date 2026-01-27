@@ -1,7 +1,7 @@
-prefecture_name,eng_name,kanji_name,kana_name,municipality_type,alphanumeric_eng_name
+prefecture_name,eng_name,kanji_name,kana_name,municipality_type,alphanumeric_eng_name,info_url
 Tokyo,Chiyoda,千代田区,ちよだく,ward,Chiyoda
 Tokyo,Chūō,中央区,ちゅうおうく,ward,Chuo
-Tokyo,Minato,港区,みなとく,ward,Minato
+Tokyo,Minato,港区,みなとく,ward,Minato,https://www.city.minato.tokyo.jp/easyjp/en/life/waste/
 Tokyo,Shinjuku,新宿区,しんじゅくく,ward,Shinjuku
 Tokyo,Bunkyō,文京区,ぶんきょうく,ward,Bunkyo
 Tokyo,Taitō,台東区,たいとうく,ward,Taito
