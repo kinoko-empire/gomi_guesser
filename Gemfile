@@ -37,8 +37,6 @@ gem "thruster", require: false
 # serialization library for Ruby https://github.com/okuramasafumi/alba
 gem "alba"
 
-# library for generating tpyescript types based on serializer objects, in this case alba
-gem "typelizer"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
