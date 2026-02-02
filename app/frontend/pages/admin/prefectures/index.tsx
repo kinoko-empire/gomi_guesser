@@ -1,12 +1,74 @@
-import { Head } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 
-export default function PrefecturesIndex() {
+import type { PrefectureBase, InertiaResponse } from "@/types/api";
+
+interface PrefectureWithPath extends PrefectureBase {
+  prefecture_path: string;
+}
+
+interface PrefectureListData extends InertiaResponse {
+  prefectures: Array<PrefectureWithPath>;
+}
+
+export default function PrefecturesIndex({
+  prefectures,
+  errors,
+}: PrefectureListData) {
   return (
     <>
-      <Head title="Gomi guessing" />
       <div>
-        <h1>Admin prefectures index page</h1>
+        <ErrorsContainer errors={errors} />
+        {prefectures.length ? (
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th className="border-b border-gray-200 p-4 pt-0 pb-3 pl-8 text-left font-medium">
+                  English Name
+                </th>
+                <th className="border-b border-gray-200 p-4 pt-0 pb-3 text-left font-medium">
+                  Kanji Name
+                </th>
+                <th className="border-b border-gray-200 p-4 pt-0 pr-8 pb-3 text-left font-medium">
+                  Kana Reading
+                </th>
+              </tr>
+              {prefectures.map((p) => {
+                return (
+                  <tr key={p.eng_name}>
+                    <td className="border-b border-gray-100 p-4 pl-8 dark:border-gray-700">
+                      <Link href={p.prefecture_path}>{p.eng_name}</Link>
+                    </td>
+                    <td className="border-b border-gray-100 p-4 dark:border-gray-700">
+                      <Link href={p.prefecture_path}>{p.kanji_name}</Link>
+                    </td>
+                    <td className="border-b border-gray-100 p-4 pr-8 dark:border-gray-700">
+                      {p.kana_name}
+                    </td>
+                  </tr>
+                );
+              })}
+            </thead>
+          </table>
+        ) : (
+          <div>No prefecture data</div>
+        )}
       </div>
     </>
   );
+}
+
+function ErrorsContainer({ errors }: { errors: Array<string> }) {
+  return errors.length > 0 ? (
+    <div>
+      <ul>
+        {errors.map((e) => {
+          return (
+            <li key={e}>
+              <p>{e}</p>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  ) : null;
 }

@@ -7,7 +7,16 @@ Rails.application.routes.draw do
   inertia "/" => "Landing"
 
   namespace "admin" do
-    resources :municipalities, :prefectures, :items
+    resources :items
+    resources :prefectures do
+      # https://guides.rubyonrails.org/routing.html#shallow-nesting
+      # per rails routing guide linked above, indicating "shallow: true"
+      # is like having municipality [:index, :new, :create] routes nested under prefectures
+      # e.g. /admin/prefectures/13/municipalities/ for the :index route
+      # and having municipality [:show, :edit, :update, :destroy] routes unnested
+      # e.g. /admin/municipalities/1 for the :show route
+      resources :municipalities, shallow: true
+    end
 
     get "/", to: redirect("/admin/dashboard")
     get "dashboard", to: "dashboard#index"
