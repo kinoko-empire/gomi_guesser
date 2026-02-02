@@ -337,9 +337,6 @@ GEM
     thruster (0.1.15-x86_64-linux)
     timeout (0.4.3)
     tsort (0.2.0)
-    typelizer (0.5.4)
-      benchmark
-      railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.2.0)
@@ -396,7 +393,6 @@ DEPENDENCIES
   solid_queue
   sqlite3 (>= 2.1)
   thruster
-  typelizer
   tzinfo-data
   vite_rails (~> 3.0)
   web-console
