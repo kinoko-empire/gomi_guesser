@@ -3,7 +3,6 @@ import { Link } from "@inertiajs/react";
 import type { PrefectureBase, InertiaResponse } from "@/types/api";
 
 interface PrefectureWithPath extends PrefectureBase {
-  edit_prefecture_path: string;
   all_prefectures_path: string;
   view_municipalities_path: string;
 }
@@ -34,9 +33,6 @@ export default function PrefectureShow({ prefecture }: PrefectureProps) {
           <p>{prefecture.kanji_name}</p>
           <p>{prefecture.kana_name}</p>
         </div>
-        <p>
-          <Link href={prefecture.edit_prefecture_path}>Edit</Link>
-        </p>
       </div>
     </>
   );

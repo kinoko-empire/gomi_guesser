@@ -8,14 +8,14 @@ Rails.application.routes.draw do
 
   namespace "admin" do
     resources :items
-    resources :prefectures do
+    resources :prefectures, only: [ :index, :show ] do
       # https://guides.rubyonrails.org/routing.html#shallow-nesting
       # per rails routing guide linked above, indicating "shallow: true"
       # is like having municipality [:index, :new, :create] routes nested under prefectures
       # e.g. /admin/prefectures/13/municipalities/ for the :index route
       # and having municipality [:show, :edit, :update, :destroy] routes unnested
       # e.g. /admin/municipalities/1 for the :show route
-      resources :municipalities, shallow: true
+      resources :municipalities, only: [ :index, :show ], shallow: true
     end
 
     get "/", to: redirect("/admin/dashboard")

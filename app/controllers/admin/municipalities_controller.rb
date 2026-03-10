@@ -1,23 +1,18 @@
 class Admin::MunicipalitiesController < ApplicationController
   def index
-    municipalities_list = Municipality.all
+    municipalities_list = Municipality.order(:alphanumeric_eng_name).where(prefecture_id: params[:prefecture_id])
 
-    municipalities_list.each do |m|
-      p m.as_json
+    municipalities_with_path = municipalities_list.map do |m|
+      { **m.attributes, municipality_path: admin_municipality_path(m.id) }
     end
 
-    render inertia: { user: 1 }
-  end
-
-  def edit
-    render inertia: { user: 1 }
+    render inertia: { municipalities: municipalities_with_path, errors: [] }
   end
 
   def show
+    # find() raises an ActiveRecord::RecordNotFound if not found
     municipality = Municipality.find(params[:id])
 
-    puts "hello? " + municipality.kanji_name
-
-    render inertia: { user: 2 }
+    render inertia: { municipality: municipality }
   end
 end

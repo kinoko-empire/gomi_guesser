@@ -10,6 +10,7 @@ interface PrefectureProps extends InertiaResponse {
   prefecture: PrefectureWithPath;
 }
 
+// not currently rendering edit route, but have component built out
 export default function PrefectureEdit({ prefecture }: PrefectureProps) {
   return (
     <>
