@@ -13,6 +13,11 @@ class Admin::MunicipalitiesController < ApplicationController
     # find() raises an ActiveRecord::RecordNotFound if not found
     municipality = Municipality.find(params[:id])
 
-    render inertia: { municipality: municipality }
+    municipality_with_links = {
+      **municipality.attributes,
+      all_prefecture_municipalities_path: admin_prefecture_municipalities_path(municipality.prefecture_id)
+    }
+
+    render inertia: { municipality: municipality_with_links }
   end
 end
