@@ -12,7 +12,6 @@ interface PrefectureProps extends InertiaResponse {
 }
 
 export default function PrefectureShow({ prefecture }: PrefectureProps) {
-  console.log(prefecture);
   return (
     <>
       <div className="flex flex-col gap-2">
