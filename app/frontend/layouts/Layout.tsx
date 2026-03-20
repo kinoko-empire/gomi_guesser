@@ -1,5 +1,8 @@
 import { Head } from "@inertiajs/react";
 
+import { Flash } from "@/components/Flash";
+import { FormErrorsDisplay } from "@/components/FormErrorsDisplay";
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -8,7 +11,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <a>Gomi home</a>
         <nav>Nav</nav>
       </header>
-      <main className="mt-0 mx-auto max-w-2xl">{children}</main>
+      <main className="mt-0 mx-auto max-w-2xl">
+        <Flash />
+        <FormErrorsDisplay />
+        {children}
+      </main>
     </>
   );
 }
