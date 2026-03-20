@@ -21,6 +21,13 @@ export interface PrefectureBase {
   updated_at: string;
 }
 
+export interface ItemBase {
+  id: number;
+  eng_name: string;
+  kana_name?: string;
+  kanji_name?: string;
+}
+
 // looking at reddit comments from below for api response and http error shapes
 // https://www.reddit.com/r/typescript/comments/xospwb/are_there_ts_community_conventions_for_api/
 export interface HttpError {
