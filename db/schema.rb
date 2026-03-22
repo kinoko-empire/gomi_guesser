@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_27_043716) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_19_033856) do
   create_table "item_categories", force: :cascade do |t|
     t.string "name", null: false
     t.string "kanji_name", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_27_043716) do
     t.string "kanji_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["eng_name"], name: "index_items_on_eng_name", unique: true
+    t.index "lower(eng_name)", name: "index_items_on_lower_eng_name", unique: true
   end
 
   create_table "municipalities", force: :cascade do |t|

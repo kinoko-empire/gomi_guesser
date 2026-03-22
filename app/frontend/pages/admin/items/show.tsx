@@ -1,11 +1,69 @@
-import { Head } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
+import { useState } from "react";
+import type { ReactNode } from "react";
 
-export default function ItemShow() {
+import type { ItemBase, InertiaResponse } from "@/types/api";
+
+interface ItemWithPath extends ItemBase {
+  items_index_path: string;
+  item_edit_path: string;
+  item_path: string;
+}
+
+interface ItemProps extends InertiaResponse {
+  item: ItemWithPath;
+}
+
+function DeleteButtonLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) {
+  return (
+    <Link
+      className="p-2 bg-red-500 rounded-xs sm:flex-1 md:flex-[0_1_100px]"
+      href={href}
+      method="delete"
+    >
+      {children}
+    </Link>
+  );
+}
+
+export default function ItemShow({ item }: ItemProps) {
+  const [showDelete, setShowDelete] = useState(false);
+
   return (
     <>
-      <Head title="Inertia + Vite Ruby + React Example" />
       <div>
-        <h1>Item show page</h1>
+        <Link href={item.items_index_path}>Back to all items</Link>
+        <p>English name: {item.eng_name}</p>
+        <p>Kanji name: {item.kanji_name ?? "N/A"}</p>
+        <p>Kana name: {item.kana_name ?? "N/A"}</p>
+        <div className="flex">
+          <Link href={item.item_edit_path}>Edit</Link>
+        </div>
+        <div className="">
+          <button onClick={() => setShowDelete(true)}>Delete</button>
+          {showDelete ? (
+            <div className="flex flex-col md:flex-row gap-2 md:gap-4">
+              <DeleteButtonLink href={item.item_path}>Confirm</DeleteButtonLink>
+              {/* 
+                break out cancel button into a Button component later?
+                could use methods in this article - https://typeofnan.dev/conditional-component-props-react/
+                for handling different types of props for different types of buttons
+              */}
+              <button
+                className="p-2 bg-gray-200 rounded-xs sm:flex-1 md:flex-[0_1_100px]"
+                onClick={() => setShowDelete(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          ) : null}
+        </div>
       </div>
     </>
   );
