@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_03_190113) do
-  create_table "item_categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "kanji_name", null: false
-    t.string "kana_name", null: false
-    t.boolean "recyclable", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[8.0].define(version: 2026_04_03_202945) do
   create_table "items", force: :cascade do |t|
     t.string "eng_name", null: false
     t.string "kana_name"
@@ -67,6 +58,15 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_03_190113) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "sorting_categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "kanji_name", null: false
+    t.string "kana_name", null: false
+    t.boolean "recyclable", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
