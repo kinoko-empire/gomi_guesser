@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_03_205032) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_03_210411) do
   create_table "items", force: :cascade do |t|
     t.string "eng_name", null: false
     t.string "kana_name"
@@ -66,6 +66,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_03_205032) do
     t.string "kana_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "additional_notes"
   end
 
   create_table "users", force: :cascade do |t|
