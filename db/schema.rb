@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_19_033856) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_03_190113) do
   create_table "item_categories", force: :cascade do |t|
     t.string "name", null: false
     t.string "kanji_name", null: false
@@ -27,6 +27,13 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_19_033856) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index "lower(eng_name)", name: "index_items_on_lower_eng_name", unique: true
+  end
+
+  create_table "material_tags", force: :cascade do |t|
+    t.string "material_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index "lower(material_name)", name: "index_material_tags_on_lower_material_name", unique: true
   end
 
   create_table "municipalities", force: :cascade do |t|
