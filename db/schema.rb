@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_04_021520) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_04_022959) do
+  create_table "item_rules", primary_key: ["municipality_id", "item_id", "sorting_category_id", "material_tag_id"], force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "sorting_category_id"
+    t.integer "material_tag_id"
+    t.integer "municipality_id"
+    t.text "additional_notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_rules_on_item_id"
+    t.index ["material_tag_id"], name: "index_item_rules_on_material_tag_id"
+    t.index ["municipality_id"], name: "index_item_rules_on_municipality_id"
+    t.index ["sorting_category_id"], name: "index_item_rules_on_sorting_category_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "eng_name", null: false
     t.string "kana_name"
