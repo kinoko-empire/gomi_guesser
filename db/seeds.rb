@@ -22,40 +22,64 @@ def create_seed_data
 
   if !Prefecture.first
     puts "seeding #{prefectures_csv.length} prefectures"
+
+    prefectures_csv.each do |row|
+      # keeping prefecture_id in the csv file in case I find later that it makes more sense to hard code the ids instead of letting rails generate them
+      p = Prefecture.find_or_create_by(eng_name: row["eng_name"]) do |c|
+        c.kanji_name = row["kanji_name"]
+        c.kana_name = row["kana_name"]
+        c.alphanumeric_eng_name = row["alphanumeric_eng_name"]
+      end
+
+      prefecture_id_map[p.eng_name] = p.id
+    end
   else
     puts "prefectures already exist, skipping"
-  end
-
-  prefectures_csv.each do |row|
-    # keeping prefecture_id in the csv file in case I find later that it makes more sense to hard code the ids instead of letting rails generate them
-    p = Prefecture.find_or_create_by(eng_name: row["eng_name"]) do |c|
-      c.kanji_name = row["kanji_name"]
-      c.kana_name = row["kana_name"]
-      c.alphanumeric_eng_name = row["alphanumeric_eng_name"]
-    end
-
-    prefecture_id_map[p.eng_name] = p.id
   end
 
   municipalities_text = File.read(Rails.root.join("db", "seed_data", "jp_municipalities.csv"))
   municipalities_csv = CSV.parse(municipalities_text, headers: true, encoding: "UTF-8")
 
-
-
   if !Municipality.first
     puts "seeding #{municipalities_csv.length} prefectures"
+
+    municipalities_csv.each do |row|
+      Municipality.find_or_create_by(eng_name: row["eng_name"], prefecture_id: prefecture_id_map[row["prefecture_name"]]) do |c|
+        c.kanji_name = row["kanji_name"]
+        c.kana_name = row["kana_name"]
+        c.municipality_type = row["municipality_type"]
+        c.alphanumeric_eng_name = row["alphanumeric_eng_name"]
+        c.info_url = row["info_url"]
+      end
+    end
   else
     puts "municipalities already exist, skipping "
   end
 
-  municipalities_csv.each do |row|
-    Municipality.find_or_create_by(eng_name: row["eng_name"], prefecture_id: prefecture_id_map[row["prefecture_name"]]) do |c|
-      c.kanji_name = row["kanji_name"]
-      c.kana_name = row["kana_name"]
-      c.municipality_type = row["municipality_type"]
-      c.alphanumeric_eng_name = row["alphanumeric_eng_name"]
-      c.info_url = row["info_url"]
+  sorting_categories_text = File.read(Rails.root.join("db", "seed_data", "sorting_categories.csv"))
+  sorting_categories_csv = CSV.parse(sorting_categories_text, headers: true, encoding: "UTF-8")
+
+  if !SortingCategory.first
+    puts "seeding sorting categories"
+
+    sorting_categories_csv.each do |row|
+      SortingCategory.create(name: row["name"])
     end
+  else
+    puts "sorting categories already exist, skipping"
+  end
+
+  material_tags_text = File.read(Rails.root.join("db", "seed_data", "material_tags.csv"))
+  material_tags_csv = CSV.parse(material_tags_text, headers: true, encoding: "UTF-8")
+
+  if !MaterialTag.first
+    puts "seeding material tags"
+
+    material_tags_csv.each do |row|
+      MaterialTag.create(material_name: row["material_name"])
+    end
+  else
+    puts "material tags already exist, skipping"
   end
 
   puts "seed script finished"
