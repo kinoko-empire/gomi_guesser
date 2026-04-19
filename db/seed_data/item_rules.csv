@@ -1,0 +1,3 @@
+item_name,sorting_category,material_name,municipality_name,prefecture_name,additional_notes
+Plastic bottle,recyclable_plastic_bottle,plastic,Minato,Tokyo
+Plastic food container,recyclable_plastic,plastic,Minato,Tokyo,Should be washed if there is any stuck on food
