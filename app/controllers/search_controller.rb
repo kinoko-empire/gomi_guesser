@@ -11,7 +11,7 @@ class SearchController < ApplicationController
       }
     end
 
-    render inertia: { search_path: "/text_search", prefecture_list: prefectures_result }
+    render inertia: { prefecture_list: prefectures_result }
   end
 
   def results
