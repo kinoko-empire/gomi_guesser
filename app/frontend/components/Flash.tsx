@@ -34,7 +34,7 @@ export function Flash() {
             );
           if (k === "alert") {
             return (
-              <p key={idx} className="border-red-600 p-4">
+              <p key={idx} className="bg-red-600 p-4">
                 {String(v)}
               </p>
             );
