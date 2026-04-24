@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     inertia "/test" => "Landing"
   end
 
+  get "search", to: "search#index"
+  get "search/results", to: "search#results"
+
   get "inertia-example", to: "inertia_example#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
