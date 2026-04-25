@@ -22,7 +22,36 @@ class SearchController < ApplicationController
       flash[:alert] = "A municipality must be selected"
       redirect_to action: "index", prefecture_name: params[:prefecture_name], text_search: params[:text_search]
     else
-      render inertia: { search_path: "/text_search" }
+      prefecture_name = params[:prefecture_name]
+      municipality_name = params[:municipality_name]
+
+      pref = Prefecture.find_by!(eng_name: prefecture_name)
+      munic = Municipality.find_by!(eng_name: municipality_name)
+
+      if munic.prefecture_id != pref.id
+        raise "error"
+      end
+
+      material_categories = MaterialTag.all.order(:material_name)
+
+      # should always be returned? possible that we don't have any data for a municipality though?
+      material_category_data = { data: {} }
+      # text search results could be empty because no search term provided OR no data available
+      # do we need to differentiate the reasons why it could be empty?
+      text_search_data = { search_term: params[:text_search], data: nil }
+
+      a = ItemRule.where(municipality_id: munic.id)
+
+      a.each do |r|
+        puts r.item_id
+      end
+
+      render inertia: {
+        material_category_data: material_category_data,
+        text_search_data: text_search_data,
+        p_name: prefecture_name,
+        m_name: municipality_name
+      }
     end
   end
 end
