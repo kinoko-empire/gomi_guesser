@@ -1,6 +1,5 @@
-import { Link } from "@inertiajs/react";
-
 import type { PrefectureBase, InertiaResponse } from "@/types/api";
+import LinkBtn from "@/components/LinkBtn";
 
 interface PrefectureWithPath extends PrefectureBase {
   prefecture_path: string;
@@ -15,45 +14,47 @@ export default function PrefecturesIndex({
   errors,
 }: PrefectureListData) {
   return (
-    <>
-      <div>
-        <ErrorsContainer errors={errors} />
-        {prefectures.length ? (
-          <table className="w-full">
-            <thead>
-              <tr>
-                <th className="border-b border-gray-200 p-4 pt-0 pb-3 pl-8 text-left font-medium">
-                  English Name
-                </th>
-                <th className="border-b border-gray-200 p-4 pt-0 pb-3 text-left font-medium">
-                  Kanji Name
-                </th>
-                <th className="border-b border-gray-200 p-4 pt-0 pr-8 pb-3 text-left font-medium">
-                  Kana Reading
-                </th>
-              </tr>
-              {prefectures.map((p) => {
-                return (
-                  <tr key={p.eng_name}>
-                    <td className="border-b border-gray-100 p-4 pl-8 dark:border-gray-700">
-                      <Link href={p.prefecture_path}>{p.eng_name}</Link>
-                    </td>
-                    <td className="border-b border-gray-100 p-4 dark:border-gray-700">
-                      <Link href={p.prefecture_path}>{p.kanji_name}</Link>
-                    </td>
-                    <td className="border-b border-gray-100 p-4 pr-8 dark:border-gray-700">
-                      {p.kana_name}
-                    </td>
-                  </tr>
-                );
-              })}
-            </thead>
-          </table>
-        ) : (
-          <div>No prefecture data</div>
-        )}
-      </div>
-    </>
+    <div>
+      <ErrorsContainer errors={errors} />
+      {prefectures.length ? (
+        <table className="w-full">
+          <thead>
+            <tr>
+              <th className="border-b border-gray-200 p-4 pt-0 pb-3 pl-8 text-left font-medium">
+                English Name
+              </th>
+              <th className="border-b border-gray-200 p-4 pt-0 pb-3 text-left font-medium">
+                Kanji Name
+              </th>
+              <th className="border-b border-gray-200 p-4 pt-0 pr-8 pb-3 text-left font-medium">
+                Kana Reading
+              </th>
+            </tr>
+            {prefectures.map((p) => {
+              return (
+                <tr key={p.eng_name}>
+                  <td className="border-b border-gray-100 p-4 pl-8 dark:border-gray-700">
+                    <LinkBtn href={p.prefecture_path}>
+                      {p.eng_name}
+                    </LinkBtn>
+                  </td>
+                  <td className="border-b border-gray-100 p-4 dark:border-gray-700">
+                    <LinkBtn href={p.prefecture_path}>
+                      {p.kanji_name}
+                    </LinkBtn>
+                  </td>
+                  <td className="border-b border-gray-100 p-4 pr-8 dark:border-gray-700">
+                    {p.kana_name}
+                  </td>
+                </tr>
+              );
+            })}
+          </thead>
+        </table>
+      ) : (
+        <div>No prefecture data</div>
+      )}
+    </div>
   );
 }
 

@@ -1,6 +1,8 @@
-import { Form, Link } from "@inertiajs/react";
+import { Form } from "@inertiajs/react";
 
 import type { InertiaResponse } from "@/types/api";
+import LinkBtn from "@/components/LinkBtn";
+import BackBanner from "@/components/BackBanner";
 
 interface ItemProps extends InertiaResponse {
   admin_items_path: string;
@@ -9,13 +11,11 @@ interface ItemProps extends InertiaResponse {
 // not currently rendering edit route, but have component built out
 export default function ItemNew({ admin_items_path }: ItemProps) {
   return (
-    <>
-      <div className="flex flex-col gap-2">
-        <div>
-          <p>
-            <Link href={admin_items_path}>Back to all items</Link>
-          </p>
-        </div>
+    <div className="flex flex-col w-full items-center gap-2">
+      <BackBanner>
+        <LinkBtn href={admin_items_path}>Back to all items</LinkBtn>
+      </BackBanner>
+      <section className="flex flex-col gap-2">
         <Form action={admin_items_path} method="post">
           <div className="flex flex-col">
             <label className="flex flex-col">
@@ -31,11 +31,9 @@ export default function ItemNew({ admin_items_path }: ItemProps) {
               <input name="item[kana_name]" type="text" />
             </label>
           </div>
-          <div>
-            <button type="submit">Submit</button>
-          </div>
+          <button type="submit">Submit</button>
         </Form>
-      </div>
-    </>
+      </section>
+    </div>
   );
 }
