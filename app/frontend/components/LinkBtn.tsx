@@ -8,7 +8,7 @@ interface ButtonProps {
     method?: Method;
 }
 
-export default function LinkButton({ children, href, className, method }: ButtonProps) {
+export default function LinkBtn({ children, href, className, method }: ButtonProps) {
   return (
     <Link href={href} className={`px-4 py-2 bg-amber-500 hover:bg-blue-600 hover:text-white ${className || ''}`} method={method}>
         {children}
