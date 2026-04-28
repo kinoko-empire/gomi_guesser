@@ -2,3 +2,11 @@
 
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
+
+h1 {
+    @apply text-2xl font-bold;
+}
+
+section {
+    @apply p-4;
+}
