@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <a>Gomi home</a>
         <nav>Nav</nav>
       </header>
-      <main className="mt-0 mx-auto max-w-2xl">
+      <main className="h-[calc(100vh-36px)] w-full flex flex-col items-center p-2">
         <Flash />
         <FormErrorsDisplay />
         {children}
