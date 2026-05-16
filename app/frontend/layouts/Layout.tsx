@@ -1,4 +1,4 @@
-import { Head, usePage, Link, Form } from "@inertiajs/react";
+import { Head, usePage, Link, Form, router } from "@inertiajs/react";
 
 import { Flash } from "@/components/Flash";
 import { FormErrorsDisplay } from "@/components/FormErrorsDisplay";
@@ -20,7 +20,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             Nav
             {props.auth ? (
               <Form method="delete" action="/session">
-                <button type="submit">Logout</button>
+                <button type="submit" onClick={() => router.clearHistory()}>
+                  Logout
+                </button>
               </Form>
             ) : null}
           </div>
