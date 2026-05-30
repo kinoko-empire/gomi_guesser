@@ -12,7 +12,7 @@ export function FormErrorsDisplay() {
   return (
     <>
       {Array.isArray(errors) && errors.length > 0 ? (
-        <div className="border-red-600 border-2 p-4 rounded-2xl bg-red-100">
+        <div className="border-red-600 border-2 p-4 rounded-2xl bg-red-400">
           {errors.map((err) => {
             return <p key={err}>{err}</p>;
           })}

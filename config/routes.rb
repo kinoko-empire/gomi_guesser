@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   resources :prefectures
   resources :municipalities
   resources :items
-  resource :session, only: [ :new ]
+  resource :session, only: [ :new, :create, :destroy ]
   resources :passwords, param: :token, only: [ :new ]
-  inertia "/" => "Landing"
+
+  get "/", to: "home#index"
 
   namespace "admin" do
     resources :items
