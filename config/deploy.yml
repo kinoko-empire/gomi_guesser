@@ -19,9 +19,7 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: false
-  hosts:
-    - www.sunasuna.cafe
-    - sunasuna.cafe
+  host: gomi-guesser.sunasuna.cafe
   app_port: 3000
 
 # Credentials for your image host.
