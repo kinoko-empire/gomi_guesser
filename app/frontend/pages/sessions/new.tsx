@@ -29,7 +29,7 @@ export default function Login({ create_session_path }: Props) {
               Password:
               <input
                 type="password"
-                minLength={12}
+                // minLength={12}
                 maxLength={72}
                 name="password"
                 autoComplete="current-password"
